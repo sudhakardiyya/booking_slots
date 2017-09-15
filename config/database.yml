@@ -17,4 +17,6 @@ test:
 
 production:
   <<: *default
-  database: booking_slots_production
+  database: ENV['CLEARDB_DATABASE_URL']
+  username: ENV['CLEARDB_DATABASE_USERNAME']
+  password: ENV['CLEARDB_DATABASE_PASSWORD']
