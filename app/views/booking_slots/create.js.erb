@@ -1,0 +1,5 @@
+<% if @errors.any? %>
+  alert("<%= @errors[0] %>");
+<% else %>
+  getBookingSlots("<%= @date %>");
+<% end %>

@@ -1,0 +1,33 @@
+<div class="container" id="dashboard-container">
+  <div class="row">
+    <div class="col-md-12" id="date-container">
+      <h3>Select Booking Slot Date</h3>
+      <div class="row col-md-3 col-sm-4 col-xs-6">
+        <input class="form-control" id="slot-date" placeholder="mm/dd/yyyy" readonly="<%= true %>" type="text"></input>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" id="slots-container"></div>
+  </div>
+</div>
+<script>
+
+  $( function() {
+    $( "#slot-date").datepicker({
+      minDate: 0,
+      onSelect: function(date, instance) {
+        getBookingSlots(date);
+     }
+    });
+  });
+
+  function getBookingSlots(date){
+    $.ajax({
+          type: 'GET',
+          data: 'date='+date,
+          url: '/booking_slots'
+        });
+  }
+
+</script>

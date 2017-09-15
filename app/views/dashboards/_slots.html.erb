@@ -1,0 +1,40 @@
+<div class="form-group">
+  <ul class="list-inline" id="slot-list">
+    <% slots.each do |slot| %>
+      <li class="list-group-item no-border">
+        <a class="<%= SlotTiming.slot_status_class(slot.id, booked_slots, available_from) %> btn" data-val="<%= slot.id %>" data-toggle="tooltip" data-placement="top" title="<%= slot_details(slot, booked_slots) %>">
+          <%= slot.slot %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div class="form-group">
+  <ul class="list-inline">
+    <li>
+      <span class="available">
+        Available
+      </span>
+    </li>
+    <li>
+      <span class="booked">
+        Booked
+      </span>
+    </li>
+    <li>
+      <span class="expired">
+        Expired
+      </span>
+    </li>
+  </ul>
+<div id="slot-modal" class="modal fade" data-backdrop="false"></div>
+</div>
+<script>
+  $(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+      $("#slots-container #slot-list a.btn-success").on("click", function(){
+          var params = "slot="+$(this).data("val")+"&date="+$("#date-container #slot-date").val();
+          $.get("/booking_slots/new", params, function(){}, 'script');
+      });
+  });
+</script>

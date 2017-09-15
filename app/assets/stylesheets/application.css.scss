@@ -1,0 +1,54 @@
+/*
+ *= require jquery-ui
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+//Custom CSS
+
+$success: #5cb85c;
+$success-border: #5cb85c;
+
+$danger: #d9534f;
+$danger-border: #d43f3a;
+
+$default: #fff;
+$default-border: #ccc;
+
+.list-group-item.no-border{
+  border: none !important;
+}
+
+.slot-status::before{
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+  margin: 10px 5px;
+}
+@mixin bg-color($color, $border) {
+  &::before{
+    background-color: $color !important;
+    border: 1px solid $border !important;
+  }
+}
+
+.available{
+  @extend .slot-status;
+  @include bg-color($success, $success-border);
+}
+
+.booked{
+  @extend .slot-status;
+  @include bg-color($danger, $danger-border);
+}
+
+.expired{
+  @extend .slot-status;
+  @include bg-color($default, $default-border);
+}

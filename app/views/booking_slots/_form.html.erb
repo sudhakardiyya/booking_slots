@@ -1,0 +1,31 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <h3>New Slot Booking</h3>
+    <%= form_for @book_slot, remote: true, html: { style: "display:inline;" } do |f| %>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+        <div class="form-group">
+          <%= f.label :slot, "Slot Time : ", class:"control-label" %>
+          <%= f.text_field :slot, class: "form-control", value: @slot_name.slot, readOnly: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :date, "Solt Date : ", class:"control-label" %>
+          <%= f.text_field :date, class: "form-control", value: date_format(@book_slot.date), readOnly: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :book_name, "Name : ", class:"control-label" %>
+          <%= f.text_field :book_name, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :book_number, "Phone Number : ",class: "control-label" %>
+          <%= f.text_field :book_number, class: "form-control", required: true %>
+        </div>
+        <%= f.hidden_field :slot_timing_id, value: @book_slot.slot_timing_id %>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Book Slot", class: "btn btn-primary book_btn" %>
+        <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      </div>
+    <% end %>
+  </div>
+</div>
