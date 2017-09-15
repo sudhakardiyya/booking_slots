@@ -19,4 +19,4 @@ production:
   <<: *default
   database: booking_slots_production
   username: booking_slots
-  password: sudha9900
+  password: <%= ENV['BOOKING_SLOTS_DATABASE_PASSWORD'] %>
